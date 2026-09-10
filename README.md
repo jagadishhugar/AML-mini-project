@@ -219,8 +219,9 @@ High recall is important in spam detection because missing spam messages is unde
 F1-Score
 F1-score combines precision and recall and provides a balanced measure of classification performance.
 For this project, F1-score is particularly useful because the dataset is imbalanced.
-9. PERFORMANCE COMPARISON — CODE
-The following program calculates all four evaluation metrics for the five algorithms.
+
+## 9. PERFORMANCE COMPARISON — CODE
+### The following program calculates all four evaluation metrics for the five algorithms.
 Code
 from sklearn.metrics import (
     accuracy_score,
