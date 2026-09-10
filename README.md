@@ -1,11 +1,11 @@
 # AML-mini-project
 ## ABSTRACT
-###This mini project focuses on the development and evaluation of machine learning models for SMS spam detection, which is an important application of Natural Language Processing (NLP). The SMS Spam Collection dataset is used for classifying text messages into two categories: legitimate messages (ham) and unwanted messages (spam). Since machine learning algorithms cannot directly process raw text, the messages are preprocessed and transformed into numerical feature vectors using the Term Frequency–Inverse Document Frequency (TF-IDF) technique.
+### This mini project focuses on the development and evaluation of machine learning models for SMS spam detection, which is an important application of Natural Language Processing (NLP). The SMS Spam Collection dataset is used for classifying text messages into two categories: legitimate messages (ham) and unwanted messages (spam). Since machine learning algorithms cannot directly process raw text, the messages are preprocessed and transformed into numerical feature vectors using the Term Frequency–Inverse Document Frequency (TF-IDF) technique.
 Five different machine learning algorithms are implemented and compared: AdaBoost Classifier, Gradient Boosting Classifier, XGBoost Classifier, Extra Trees Classifier, and Ridge Classifier. The dataset is divided into training and testing sets, and each model is trained using the extracted TF-IDF features. The performance of the models is evaluated using suitable metrics, including accuracy, precision, recall, and F1-score. Confusion matrices are also used to analyze the classification errors made by each model.
 The experimental results demonstrate that all five algorithms can effectively classify SMS messages into spam and ham categories, although their performance varies across different evaluation metrics. The best-performing algorithm is identified based on the comparative F1-score and overall classification performance. This project demonstrates how NLP-based text representation combined with machine learning can be effectively applied to automated spam message detection.
 
-#1. INTRODUCTION
-#Natural Language Processing (NLP) is a branch of Artificial Intelligence and Machine Learning that focuses on enabling computers to process, understand, analyze, and classify human language. Text data is generated continuously through emails, SMS messages, social media posts, customer reviews, news articles, and online communication. Since this information is usually unstructured, NLP techniques are required to convert text into a numerical representation that machine learning algorithms can process.
+## 1. INTRODUCTION
+### Natural Language Processing (NLP) is a branch of Artificial Intelligence and Machine Learning that focuses on enabling computers to process, understand, analyze, and classify human language. Text data is generated continuously through emails, SMS messages, social media posts, customer reviews, news articles, and online communication. Since this information is usually unstructured, NLP techniques are required to convert text into a numerical representation that machine learning algorithms can process.
 One important application of NLP is spam message detection. Spam messages are unwanted messages that may contain advertisements, fraudulent offers, malicious links, or misleading information. Automatically identifying spam messages is useful for communication platforms because it reduces unwanted content and helps protect users from potentially harmful messages.
 In this mini project, the SMS Spam Collection Dataset is used to develop a machine learning-based spam classification system. Each record in the dataset contains an SMS message and its corresponding class label. The two classes are ham, representing legitimate messages, and spam, representing unwanted messages.
 Since machine learning algorithms cannot directly process raw text, the SMS messages must first be converted into numerical feature vectors. In this project, TF-IDF is used as the text representation technique. TF-IDF assigns numerical weights to words based on their frequency in a particular document and their importance across the entire collection of documents.
@@ -14,8 +14,8 @@ The objective is not only to train the models but also to compare their performa
 The models are trained using the same training data and evaluated using the same testing data. This ensures that the comparison is fair.
 The final objective of the project is to identify the algorithm that provides the best overall performance for SMS spam classification. The results can also provide insight into the suitability of different ensemble and linear methods for NLP-based classification.
 
-2. DATASET DESCRIPTION
-The SMS Spam Collection Dataset is a collection of SMS messages designed for research and experimentation in spam detection and text classification.
+## 2. DATASET DESCRIPTION
+### The SMS Spam Collection Dataset is a collection of SMS messages designed for research and experimentation in spam detection and text classification.
 Each record consists of two main components:
 •	Label 
 •	SMS message 
@@ -38,8 +38,8 @@ An important characteristic of the dataset is that the classes are not perfectly
 For spam detection, recall is particularly important because a model with poor recall may fail to identify many spam messages. Precision is also important because excessive false spam predictions could cause legitimate messages to be incorrectly classified.
 The dataset therefore provides an appropriate environment for comparing five machine learning algorithms using multiple evaluation metrics.
 
-3. DATA PREPROCESSING
-Data preprocessing is an essential stage of the NLP workflow. Raw SMS messages contain text in an unstructured format and cannot be directly supplied to most machine learning algorithms.
+## 3. DATA PREPROCESSING
+### Data preprocessing is an essential stage of the NLP workflow. Raw SMS messages contain text in an unstructured format and cannot be directly supplied to most machine learning algorithms.
 The first step is to load the dataset and assign meaningful column names. The two columns can be named label and message.
 The next step is to inspect the dataset for missing values and duplicate records. Missing messages cannot be meaningfully classified and may need to be removed. Duplicate messages can also be removed to reduce unnecessary repetition in the training data.
 The target labels are categorical. They can be converted into numerical values where ham is represented by 0 and spam by 1.
@@ -55,13 +55,13 @@ The preprocessing pipeline can therefore be summarized as:
 Raw SMS → Cleaning → Label Encoding → Train-Test Split → TF-IDF Vectorization → Numerical Feature Matrix
 The resulting TF-IDF matrix can then be supplied to the five machine learning algorithms.
 
-4. EXPLORATORY DATA ANALYSIS
-Exploratory Data Analysis is performed to understand the characteristics of the SMS dataset before training the machine learning models.
+## 4. EXPLORATORY DATA ANALYSIS
+### Exploratory Data Analysis is performed to understand the characteristics of the SMS dataset before training the machine learning models.
 The first step is to examine the number of messages belonging to each class.
 Code
 import pandas as pd
 import matplotlib.pyplot as plt
-# Load dataset
+#Load dataset
 df = pd.read_csv(
     "SMSSpamCollection",
     sep="\t",
@@ -98,8 +98,8 @@ Output:
 The graph demonstrates the imbalance between ham and spam messages.
 This observation is important because a model could achieve relatively high accuracy simply by predicting the majority class. Therefore, precision, recall, and F1-score are required for a meaningful evaluation.
 
-5. TEXT REPRESENTATION USING TF-IDF
-Machine learning algorithms cannot directly process raw text. Therefore, the SMS messages must be converted into numerical feature vectors.
+## 5. TEXT REPRESENTATION USING TF-IDF
+### Machine learning algorithms cannot directly process raw text. Therefore, the SMS messages must be converted into numerical feature vectors.
 TF-IDF is used in this project.
 TF-IDF consists of two main components:
 Term Frequency (TF): Measures how frequently a word occurs in a document.
@@ -122,9 +122,9 @@ Training TF-IDF Shape: (4457, approximately 7000+)
 Testing TF-IDF Shape: (1115, approximately 7000+)
 The exact number of TF-IDF features depends on the vectorizer settings.
 
-6. MACHINE LEARNING ALGORITHMS
-6.1 AdaBoost Classifier
-AdaBoost stands for Adaptive Boosting. It is an ensemble learning technique that combines multiple weak learners to create a stronger classifier.
+## 6. MACHINE LEARNING ALGORITHMS
+### 6.1 AdaBoost Classifier
+### AdaBoost stands for Adaptive Boosting. It is an ensemble learning technique that combines multiple weak learners to create a stronger classifier.
 The basic idea behind AdaBoost is to train a sequence of weak learners. Initially, all training observations receive similar importance. After each weak learner is trained, incorrectly classified observations receive greater importance. The next learner then focuses more heavily on these difficult observations.
 The final prediction is obtained by combining the predictions of all weak learners using weighted voting.
 AdaBoost can be effective when the weak learners individually have limited predictive ability but can collectively form a strong classifier.
@@ -154,8 +154,8 @@ It is particularly useful for high-dimensional datasets, making it suitable for 
 The L2 regularization term reduces the influence of excessively large coefficients and helps improve generalization.
 Ridge Classifier is computationally efficient and often performs surprisingly well on text classification tasks.
 
-7. MODEL TRAINING
-The five models are trained using the same TF-IDF training matrix.
+## 7. MODEL TRAINING
+### The five models are trained using the same TF-IDF training matrix.
 Complete Model Training Code
 from sklearn.ensemble import (
     AdaBoostClassifier,
@@ -204,8 +204,8 @@ Training: Extra Trees
 Training: Ridge Classifier
 All models trained successfully.
 
-8. EVALUATION METRICS
-The models are evaluated using four primary metrics.
+## 8. EVALUATION METRICS
+### The models are evaluated using four primary metrics.
 Accuracy
 Accuracy measures the percentage of correctly classified messages.
 Precision
@@ -285,8 +285,8 @@ Ridge Classifier	98.2%	97.7%	88.1%	92.6%
 
 Again, replace this table with your actual notebook output.
 
-10. CONFUSION MATRIX COMPARISON
-A confusion matrix provides detailed information about correct and incorrect classifications.
+## 10. CONFUSION MATRIX COMPARISON
+### A confusion matrix provides detailed information about correct and incorrect classifications.
 Code
 from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
@@ -319,8 +319,8 @@ In a confusion matrix:
 •	True Positive (TP): Spam correctly identified as spam. 
 For spam detection, both false positives and false negatives are important. However, false negatives can be particularly undesirable because they represent spam messages that were not detected.
 
-11. VISUAL PERFORMANCE COMPARISON
-The performance can be visualized using a bar chart.
+## 11. VISUAL PERFORMANCE COMPARISON
+### The performance can be visualized using a bar chart.
 Code
 results_plot = results_df.set_index("Algorithm")
 results_plot[["Accuracy", "Precision", "Recall", "F1-Score"]].plot(kind="bar", figsize=(12, 6))
@@ -336,10 +336,8 @@ The graph will allow the performance of all five algorithms to be compared visua
 Output:
 <img width="578" height="334" alt="image" src="https://github.com/user-attachments/assets/ef6ae911-0f4d-4737-89ff-3f8fea8b3894" />
 
- 
-
-12. RESULTS AND DISCUSSION
-The experimental results show that all five machine learning algorithms are capable of classifying SMS messages into ham and spam categories.
+## 12. RESULTS AND DISCUSSION
+### The experimental results show that all five machine learning algorithms are capable of classifying SMS messages into ham and spam categories.
 AdaBoost provides strong overall performance. Its ensemble structure allows it to focus on incorrectly classified training observations and gradually improve the final classifier. However, its recall may be lower than that of some other algorithms.
 Gradient Boosting also performs well, although its performance may depend strongly on hyperparameters such as the number of estimators, learning rate, and tree depth.
 XGBoost generally provides strong classification performance. Its optimized gradient boosting implementation and regularization techniques make it a powerful algorithm for classification problems. In the example results, XGBoost achieves an F1-score above 90%, demonstrating a good balance between precision and recall.
@@ -349,8 +347,8 @@ Based on the example results, Ridge Classifier achieves the highest accuracy and
 The results also demonstrate that the best algorithm should not be selected solely based on accuracy. For spam detection, recall and precision are both important. A model with high accuracy but poor recall could still allow many spam messages to pass through.
 F1-score provides a useful combined measure because it balances precision and recall. Therefore, the model with the highest F1-score can be considered a strong candidate for the best overall classifier.
 
-13. BEST-PERFORMING ALGORITHM
-Based on the representative experimental results, the Ridge Classifier is identified as the best-performing algorithm.
+## 13. BEST-PERFORMING ALGORITHM
+### Based on the representative experimental results, the Ridge Classifier is identified as the best-performing algorithm.
 The comparison is:
 Rank	Algorithm	Accuracy	F1-Score
 1	Ridge Classifier	98.2%	92.6%
@@ -365,8 +363,8 @@ Although Extra Trees achieves very high precision, its recall is lower than Ridg
 Ridge provides a better balance between precision and recall, resulting in a higher F1-score.
 Therefore, for this particular SMS spam classification experiment, Ridge Classifier can be selected as the best-performing algorithm.
 
-14. CONCLUSION
-This mini project demonstrated the application of Natural Language Processing and machine learning techniques to SMS spam classification.
+## 14. CONCLUSION
+### This mini project demonstrated the application of Natural Language Processing and machine learning techniques to SMS spam classification.
 The SMS Spam Collection dataset was selected as an NLP-based binary classification dataset. The objective was to classify messages into two categories: ham and spam.
 The raw text data was preprocessed and converted into numerical features using TF-IDF. This transformation allowed machine learning algorithms to process the textual information.
 Five different machine learning algorithms were implemented:
@@ -384,8 +382,8 @@ The experiment also demonstrates that model evaluation should not depend on accu
 Future work could improve the project by experimenting with different TF-IDF parameters, word and character n-grams, hyperparameter tuning, cross-validation, and additional NLP models. More advanced approaches such as transformer-based models could also be explored.
 Overall, this project demonstrates a complete NLP machine learning workflow, beginning with raw text preprocessing and TF-IDF representation and ending with model training, evaluation, comparison, and selection of the best-performing algorithm.
 
-15. REFERENCES
-1.	Almeida, T. A., Gómez Hidalgo, J. M., & Yamakami, A. (2011). Contributions to the Study of SMS Spam Filtering: New Collection and Results. Proceedings of the 11th ACM Symposium on Document Engineering. 
+## 15. REFERENCES
+### 1.	Almeida, T. A., Gómez Hidalgo, J. M., & Yamakami, A. (2011). Contributions to the Study of SMS Spam Filtering: New Collection and Results. Proceedings of the 11th ACM Symposium on Document Engineering. 
 2.	Scikit-learn Documentation. Machine learning algorithms, preprocessing techniques, TF-IDF vectorization, and evaluation metrics. 
 3.	Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. 
 4.	Freund, Y., & Schapire, R. E. (1997). A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting. Journal of Computer and System Sciences. 
